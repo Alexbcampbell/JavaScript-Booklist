@@ -46,6 +46,13 @@ UI.prototype.showAlert = function(message, className){
     }, 3000);
 }
 
+//delete book
+UI.prototype.deleteBook = function(target){
+    if(target.className === 'delete'){
+        target.parentElement.parentElement.remove();
+    }
+}
+
 //clear fields
 UI.prototype.clearFields = function(){
     document.getElementById
@@ -80,6 +87,18 @@ document.getElementById('book-form').addEventListener('submit',
     }
 
     
+
+    e.preventDefault();
+});
+
+//Event listener for delete
+document.getElementById('book-list').addEventListener('click', function(e){
+    const ui = new UI();
+    //delete book
+    ui.deleteBook(e.target);
+
+    //show message
+    ui.showAlert('Book removed!', 'success');
 
     e.preventDefault();
 })
